@@ -1,8 +1,8 @@
 name: CI
 
-#on:
-#  push:
-#    branches: [master]
+on:
+  push:
+    branches: [master]
 
 jobs:
   build:
@@ -33,7 +33,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           source: '.,!node_modules'
-          target: '~/app/app-name'
+          target: '~/app/auth-manage'
 
       # Executar Yarn na Digital Ocean
       - name: executing remote ssh commands using password
@@ -44,6 +44,6 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd ~/app/app-name
+            cd ~/app/auth-manage
             yarn
-            pm2 restart app-name
+            pm2 restart auth-manage
